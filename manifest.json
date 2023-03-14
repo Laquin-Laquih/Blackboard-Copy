@@ -1,0 +1,44 @@
+{
+    "name": "Blackboard Copy",
+    "version": "1.0",
+    "description": "Copy question and answers from Blackboard multiple choice questions",
+    "permissions": ["tabs"],
+    "host_permissions": ["https://u-tad.blackboard.com/*/assessment/*/overview/attempt/*"],
+    "background":
+    {
+        "service_worker": "background.js"
+    },
+    "content_scripts":
+    [
+        {
+            "matches": ["https://u-tad.blackboard.com/*/assessment/*/overview/attempt/*"],
+            "js": ["contentScript.js"],
+            "all_frames": true
+        }
+    ],
+    "web_accessible_resources": 
+    [
+        {
+            "resources":
+            [
+                "assets/copy.png"
+            ],
+            "matches": ["https://u-tad.blackboard.com/*"]
+        }
+    ],
+    "action":
+    {
+        "default_icon":
+        {
+            "16": "assets/ext-icon.png",
+            "24": "assets/ext-icon.png",
+            "32": "assets/ext-icon.png"
+        },
+        "default_title": "Blackboard Cop",
+        "default_popup": "popup.html"
+    },
+    "externally_connectable": {
+        "matches": ["https://u-tad.blackboard.com/*/assessment/*/overview/attempt/*"]
+    },
+    "manifest_version": 3
+}
